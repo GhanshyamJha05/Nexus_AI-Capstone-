@@ -3,12 +3,10 @@ import nextJest from "next/jest.js";
 
 const createJestConfig = nextJest({ dir: "./" });
 
-// Note: correct Jest key is "setupFilesAfterFramework" (after each test framework loads)
 const config: Config = {
   coverageProvider: "v8",
   testEnvironment: "jsdom",
-  // @ts-expect-error - jest type definition uses this key
-  setupFilesAfterFramework: ["<rootDir>/jest.setup.ts"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },

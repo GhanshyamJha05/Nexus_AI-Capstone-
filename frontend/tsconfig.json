@@ -19,5 +19,6 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "types": ["jest", "node", "@testing-library/jest-dom"],
   "exclude": ["node_modules"]
 }
