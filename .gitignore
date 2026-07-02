@@ -1,0 +1,38 @@
+# Environment
+.env
+*.env.local
+
+# Docker volumes
+postgres_data/
+redis_data/
+chroma_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Uploads
+backend/uploads/
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Build outputs
+.next/
+dist/
+build/
