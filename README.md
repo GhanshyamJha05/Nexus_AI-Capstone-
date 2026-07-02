@@ -1,80 +1,111 @@
-# Nexus AI — Simulate Decisions Before Reality Does
+# Nexus AI
 
-<div align="center">
-  <h3>Multi-Agent Decision Intelligence Platform</h3>
-  <p>Launch expert AI agents to simulate the chain reactions of your strategic decisions.</p>
+A multi-agent decision intelligence platform for simulating how strategic choices can ripple across business, policy, technology, and supply chain domains.
 
-  ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-  ![Python](https://img.shields.io/badge/python-3.12-blue.svg)
-  ![Next.js](https://img.shields.io/badge/Next.js-15-black.svg)
-  ![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green.svg)
-  ![Docker](https://img.shields.io/badge/docker-compose-blue.svg)
-</div>
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.12-blue.svg)
+![Next.js](https://img.shields.io/badge/Next.js-15-black.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green.svg)
+![Docker](https://img.shields.io/badge/docker-compose-blue.svg)
 
----
+## Why Nexus AI?
 
-## What Is Nexus AI?
+Nexus AI helps teams explore complex decisions before acting on them. Instead of giving a single answer, it launches specialized AI agents that evaluate a scenario from different perspectives, then combines their findings into a shared consensus, causal graph, and executive-style report.
 
-Nexus AI is a **Multi-Agent Decision Intelligence Platform**. Instead of answering questions, it simulates the **chain reactions** caused by strategic decisions.
+Example prompts include:
+- "What happens if a company shifts 50% of manufacturing from China to India?"
+- "How would a new carbon policy affect supply chains and consumer pricing?"
+- "What are the likely downstream effects of a major product launch?"
 
-**Example prompt:**
-> "What happens if Apple shifts 50% of manufacturing from China to India?"
+## Key Features
 
-The system:
-1. Launches 6 specialized expert AI agents
-2. Each agent analyzes the decision from its domain perspective
-3. A consensus agent synthesizes agreements and conflicts
-4. A causal graph maps cause-and-effect relationships
-5. A ripple timeline shows impacts at 1 week, 1 month, 6 months, 1 year, 5 years
-6. An executive report is generated and exportable as PDF
+- Multi-agent reasoning with domain-focused expert agents
+- Real-time simulation streaming and status updates
+- Interactive causal graph and ripple timeline visualization
+- Executive report generation for decision support
+- Authentication, vector search, task queue processing, and containerized deployment
 
----
+## Architecture at a Glance
+
+- Frontend: Next.js, React, TypeScript, Tailwind CSS
+- Backend: FastAPI, async SQLAlchemy, Pydantic
+- AI orchestration: LangGraph, LangChain, Gemini-based agents
+- Data layer: PostgreSQL, Redis, ChromaDB
+- Infrastructure: Docker Compose, Nginx, GitHub Actions
 
 ## Quick Start
 
+### Prerequisites
+
+- Docker 24+
+- Docker Compose v2+
+- Git
+- A Google Gemini API key
+
+### Run with Docker
+
 ```bash
-# Clone and configure
-git clone https://github.com/your-org/nexus-ai.git
-cd nexus-ai
+git clone https://github.com/GhanshyamJha05/Nexus_AI-Capstone-.git
+cd Nexus_AI-Capstone-
 cp .env.example .env
-# Edit .env with your API keys
-
-# Start all services
-docker-compose up --build
-
-# Frontend: http://localhost:3000
-# Backend:  http://localhost:8000
-# API Docs: http://localhost:8000/docs
+# Edit .env and set GEMINI_API_KEY before starting the stack
+docker compose up --build
 ```
 
----
+Once running:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+- API docs: http://localhost:8000/docs
+
+### Seed demo data
+
+```bash
+docker compose exec backend python scripts/seed_data.py
+```
+
+Demo credentials are included in the setup docs and seed script.
+
+## Local Development
+
+### Backend
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install --legacy-peer-deps
+npm run dev
+```
+
+## Project Structure
+
+- backend/: FastAPI application, agents, repositories, workers, and database models
+- frontend/: Next.js app with dashboard, simulation UI, and shared components
+- docker/: Container and reverse-proxy configuration
+- docs/: Architecture, deployment, installation, and evaluation guides
+- evaluation/: Automated evaluation scripts for agent outputs
 
 ## Documentation
 
-| Document | Description |
-|---|---|
-| [Architecture](docs/ARCHITECTURE.md) | System design and component overview |
-| [Installation](docs/INSTALLATION.md) | Detailed setup instructions |
-| [Deployment](docs/DEPLOYMENT.md) | Production deployment guide |
-| [API Reference](docs/API.md) | Full REST API documentation |
-| [Agent System](docs/AGENTS.md) | Multi-agent architecture explanation |
-| [Evaluation](docs/EVALUATION.md) | Quality metrics and methodology |
-| [Future Improvements](docs/FUTURE.md) | Roadmap and planned features |
+- [Architecture](docs/ARCHITECTURE.md)
+- [Installation](docs/INSTALLATION.md)
+- [Deployment](docs/DEPLOYMENT.md)
+- [API Reference](docs/API.md)
+- [Agent System](docs/AGENTS.md)
+- [Evaluation](docs/EVALUATION.md)
+- [Future Improvements](docs/FUTURE.md)
 
----
+## Contributing
 
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | Next.js 15, React 19, TypeScript, TailwindCSS, shadcn/ui, Framer Motion |
-| Backend | FastAPI, Python 3.12, LangGraph, LangChain, Pydantic |
-| Database | PostgreSQL, ChromaDB (vector), Redis |
-| AI | Gemini 2.5 Pro, RAG, Tool Calling, Memory |
-| Infra | Docker, Docker Compose, GitHub Actions |
-
----
+Contributions are welcome. Please open an issue or submit a pull request with a clear summary of the changes you’d like to make.
 
 ## License
 
-MIT © Nexus AI Team
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
