@@ -10,17 +10,12 @@ import { LandingNav } from "./landing-nav";
 import { LandingFooter } from "./landing-footer";
 import { ParticleBackground } from "./particle-background";
 import { pingHealthCheck } from "@/lib/health";
+import { useBackendHealth } from "@/hooks/use-backend-health";
 
 export function LandingPage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [backendStatus, setBackendStatus] = useState<"checking" | "online" | "offline">("checking");
-
-  useEffect(() => {
-    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-    pingHealthCheck(apiBaseUrl).then((isOnline) => {
-      setBackendStatus(isOnline ? "online" : "offline");
-    });
-  }, []);
+  const { status: backendReady } = useBackendHealth(process.env.NEXT_PUBLIC_API_URL, 30000);
+  const backendStatus = backendReady === "checking" ? "checking" : backendReady === "ready" ? "online" : "offline";
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-background overflow-x-hidden">
