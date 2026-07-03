@@ -27,20 +27,26 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     configure_logging()
     logger.info("Starting Nexus AI backend", version=settings.app_version, env=settings.app_env)
 
-    # Create database tables
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    logger.info("Database tables initialized")
+    try:
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
+        logger.info("Database tables initialized")
+    except Exception as exc:
+        logger.warning("Database unavailable during startup; continuing without initialization", error=str(exc))
 
-    # Test Redis connection
-    redis = await get_redis_client()
-    await redis.ping()
-    logger.info("Redis connection established")
+    try:
+        redis = await get_redis_client()
+        await redis.ping()
+        logger.info("Redis connection established")
+    except Exception as exc:
+        logger.warning("Redis unavailable during startup; continuing without background queues", error=str(exc))
 
     yield
 
-    # Cleanup
-    await engine.dispose()
+    try:
+        await engine.dispose()
+    except Exception as exc:
+        logger.warning("Failed to dispose database engine cleanly", error=str(exc))
     logger.info("Nexus AI backend shut down cleanly")
 
 
