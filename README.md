@@ -8,7 +8,7 @@ A multi-agent decision intelligence platform for simulating how strategic choice
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green.svg)
 ![Docker](https://img.shields.io/badge/docker-compose-blue.svg)
 
-## Why Nexus AI?
+## Why Nexus AI
 
 Nexus AI helps teams explore complex decisions before acting on them. Instead of giving a single answer, it launches specialized AI agents that evaluate a scenario from different perspectives, then combines their findings into a shared consensus, causal graph, and executive-style report.
 
